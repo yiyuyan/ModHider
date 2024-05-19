@@ -3,17 +3,18 @@ package cn.ksmcbrigade.igmun;
 import com.hexagram2021.mod_whitelist.client.ModWhitelistClient;
 import com.terraformersmc.modmenu.ModMenu;
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
+import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;
+import net.fabricmc.loader.api.entrypoint.EntrypointContainer;
 import net.fabricmc.loader.impl.FabricLoaderImpl;
 import net.fabricmc.loader.impl.ModContainerImpl;
 import net.fabricmc.loader.impl.entrypoint.EntrypointStorage;
 import net.fabricmc.loader.impl.util.DefaultLanguageAdapter;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.option.SimpleOption;
-import net.minecraft.text.Text;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -132,7 +133,7 @@ public class Utils {
                         last.remove(modID);
                         config.set(null,last);
                     }
-                    catch (NoClassDefFoundError e){
+                    catch (ClassNotFoundException e){
                         System.out.println("Can't find the mod menu.");
                     }
                     catch (Exception e){
@@ -146,7 +147,7 @@ public class Utils {
 
                         ModWhitelistClient.mods.remove(modID);
                     }
-                    catch (NoClassDefFoundError e){
+                    catch (ClassNotFoundException e){
                         System.out.println("Can't find the white mod list.");
                     }
                     catch (Exception e){
@@ -164,5 +165,23 @@ public class Utils {
 
 
         return ret;
+    }
+
+    public static EntrypointContainer<ClientModInitializer> getEntrypoint(String modID){
+                for(EntrypointContainer<ClientModInitializer> container:FabricLoader.getInstance().getEntrypointContainers("client", ClientModInitializer.class)){
+                    if(container.getProvider().getMetadata().getId().equalsIgnoreCase(modID)){
+                        return container;
+                    }
+                }
+                return null;
+    }
+
+    public static EntrypointContainer<ModInitializer> getEntrypointMain(String modID){
+        for(EntrypointContainer<ModInitializer> container:FabricLoader.getInstance().getEntrypointContainers("main", ModInitializer.class)){
+            if(container.getProvider().getMetadata().getId().equalsIgnoreCase(modID)){
+                return container;
+            }
+        }
+        return null;
     }
 }

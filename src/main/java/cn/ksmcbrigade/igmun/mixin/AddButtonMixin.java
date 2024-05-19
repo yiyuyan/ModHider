@@ -2,10 +2,8 @@ package cn.ksmcbrigade.igmun.mixin;
 
 import cn.ksmcbrigade.igmun.HideGui;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.screen.GameModeSelectionScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.TitleScreen;
-import net.minecraft.client.gui.screen.world.SelectWorldScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Mixin;
@@ -22,7 +20,7 @@ public abstract class AddButtonMixin extends Screen {
 
     @Inject(method = "init",at = @At("TAIL"),locals = LocalCapture.CAPTURE_FAILSOFT)
     public void init(CallbackInfo ci, int i, int j, int k, int l){
-        int c = 3;
+        int c = 4;
         try {
             Class.forName("com.terraformersmc.modmenu.ModMenu");
             c = 4;

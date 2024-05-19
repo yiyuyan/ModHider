@@ -8,7 +8,7 @@
   "Movement": {
     "x": 98,
     "y": 5,
-    "minimized": true,
+    "minimized": false,
     "pinned": false
   },
   "Combat": {

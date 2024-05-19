@@ -6,7 +6,8 @@
   "mixins": [
   ],
   "client": [
-    "AddButtonMixin"
+    "AddButtonMixin",
+    "InvokeEntrypointMixin"
   ],
   "injectors": {
     "defaultRequire": 1

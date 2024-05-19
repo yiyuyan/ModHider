@@ -14,11 +14,8 @@
   "license": "MIT",
   "environment": "client",
   "entrypoints": {
-    "client": [
-      "cn.ksmcbrigade.igmun.client.In_gameModUninstallerClient"
-    ],
-    "main": [
-      "cn.ksmcbrigade.igmun.In_gameModUninstaller"
+    "preLaunch": [
+      "cn.ksmcbrigade.igmun.client.PreMod"
     ]
   },
   "depends": {
